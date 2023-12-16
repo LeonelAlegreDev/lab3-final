@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Enlace a Bootstrap CSS desde CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <title>Primer Parcial</title>
+    <style>
+        #main_wrapper{
+            padding:10px 50px;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Contenido de tu página aquí -->
+    <div id="main_wrapper">
+        <h1>
+            ABM Cliente / Empleado
+        </h1>
+        <div id="table_container">
+            <!-- FILTROS -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="filtrar_por">Filtrar por:</label>
+                        <select class="form-control" id="filtrar_por">
+                            <option value="Todos">Todos</option>
+                            <option value="Ciudadano">Ciudadano</option>
+                            <option value="Extranjero">Extranjero</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5 d-flex justify-content-between align-items-center">
+                        <label for="edad_promedio" class="col-md-4">Edad promedio:</label>
+                        <input type="text" class="form-control col-md-1" id="edad_promedio" readonly>
+                        <button class="btn btn-primary col-md-3" id="calcular_edad_promedio">Calcular</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="mostrar_campos">Mostrar campos:</label>
+                            <div class="form-check d-inline-flex mx-2">
+                                <input class="form-check-input" type="checkbox" id="id_filter" checked>
+                                <label class="form-check-label" for="id_filter">ID</label>
+                            </div>
+                            <div class="form-check d-inline-flex mx-2">
+                                <input class="form-check-input" type="checkbox" id="nombre_filter" checked>
+                                <label class="form-check-label" for="nombre_filter">Nombre</label>
+                            </div>
+                            <div class="form-check d-inline-flex mx-2">
+                                <input class="form-check-input" type="checkbox" id="apellido_filter" checked>
+                                <label class="form-check-label" for="apellido_filter">Apellido</label>
+                            </div>
+                            <div class="form-check d-inline-flex mx-2">
+                                <input class="form-check-input" type="checkbox" id="fechaNacimiento_filter" checked>
+                                <label class="form-check-label" for="fechaNacimiento_filter">fechaNacimiento</label>
+                            </div>
+                            <div class="form-check d-inline-flex mx-2">
+                                <input class="form-check-input" type="checkbox" id="dni_filter" checked>
+                                <label class="form-check-label" for="dni_filter">DNI</label>
+                            </div>
+                            <div class="form-check d-inline-flex mx-2">
+                                <input class="form-check-input" type="checkbox" id="paisOrigen" checked>
+                                <label class="form-check-label" for="paisOrigen">paisOrigen</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!-- TABLA REGISTROS -->
+        <h2>Tabla Registros</h2>
+        <table class="table table-striped" id="tabla_registros">
+        </table>         
+        <button class="btn-primary btn" id="show_abm">ABM</button>
+        </div>
+
+
+        <!-- FORM ABM -->
+        <div class="container hidden" id="abm">
+            <h2>Form ABM</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                    <label for="id_abm">ID</label>
+                    <input type="text" class="form-control" id="id_abm" placeholder="ID">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                    <label for="nombre_abm">Nombre</label>
+                    <input type="text" class="form-control" id="nombre_abm" placeholder="Nombre">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                    <label for="apellido_abm">Apellido</label>
+                    <input type="text" class="form-control" id="apellido_abm" placeholder="Apellido">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                    <label for="fechaNacimiento_abm">fechaNacimiento</label>
+                    <input type="text" class="form-control" id="fechaNacimiento_abm" placeholder="YYYYMMDD">
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <label for="tipo_abm">Tipo</label>
+                        <select class="form-control" id="tipo_abm">
+                            <option value="Ciudadano">Ciudadano</option>
+                            <option value="Extranjero">Extranjero</option>
+                        </select>
+                        </div>
+                    </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="dni_abm">DNI</label>
+                        <input type="text" class="form-control" id="dni_abm" placeholder="DNI">
+                    </div>
+                </div>
+                <div class="col-md-12 hidden">
+                    <div class="form-group">
+                        <label for="paisOrigen_abm">Pais origen</label>
+                        <input type="text" class="form-control" id="paisOrigen_abm" placeholder="Pais origen">
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12" style="margin: 15px 5px;">
+                    <div class="form-group">
+                    <input type="button" class="btn btn-primary" value="Alta" id="alta_abm">
+                    <input type="button" class="btn btn-primary" value="Modificar" id="modificar_abm">
+                    <input type="button" class="btn btn-primary" value="Eliminar" id="eliminar_abm">
+                    <input type="button" class="btn btn-primary" value="Cancelar" id="cancelar_abm">
+                    </div>
+                </div>
+            </div>
+    </div>
+<!-- Enlace a Bootstrap JS (opcional) -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<script type="module" src="./Aplicacion/main.js"></script>
+</body>
+</html>
